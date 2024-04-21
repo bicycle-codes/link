@@ -27,7 +27,7 @@ export type NewDeviceMessage = {
 export type Certificate = Awaited<
     ReturnType<typeof createMessage<{
         exp?:number;  /* <-- Expiration, unix timestamp,
-            after which this certificat is no longer valid.
+            after which this certificate is no longer valid.
             Default is no expiration. */
         nbf?:number  /* <-- Not Before, unix timestamp of when the certificate
             becomes valid. */
@@ -113,6 +113,21 @@ export async function Parent (identity:Identity, oddCrypto:Crypto, {
     })
 }
 
+/**
+ * Open a websocket connection from the new device. Returns a promise that
+ * resolves with the new ID and a signed certificate.
+ *
+ * @param {Crypto} oddCrypto ODD crypto implementation
+ * @param {Object} opts Parameters
+ * @param {string} opts.host URL for the websocket server
+ * @param {string} opts.code The string used as an ID for the websocket,
+ * obtained from the parent device
+ * @param {string} opts.query Can add a token here that you use for auth
+ * @param {string} opts.humanReadableDeviceName A name for this device
+ * @returns {Promise<{ identity:Identity, certificate:Certificate }>} A promise
+ * that will resolve with the new identity object, and a signed certificate
+ * that authorizes this new device.
+ */
 export async function Child (oddCrypto:Crypto, {
     host,
     code,
@@ -162,6 +177,8 @@ export async function Child (oddCrypto:Crypto, {
             }
 
             resolve({ identity: newIdentity, certificate })
+
+            party.close()
         })
     })
 }
