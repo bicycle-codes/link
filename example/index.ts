@@ -126,6 +126,8 @@ const Example:FunctionComponent = function Example () {
                     </p>
                     <span class="the-code">${state.code.value}</span>
                 </div>` :
+                state.linkState.value === 'child' ?
+                    html`<${CodeForm} onSubmit=${joinParent} />` :
                 null
             }` :
 
