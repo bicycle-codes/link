@@ -178,14 +178,19 @@ function CodeForm ({ onSubmit }) {
     async function handleSubmit (ev:SubmitEvent) {
         ev.preventDefault()
 
-        const pin = (ev.target as HTMLFormElement).elements['pin'].value
+        const pin = (ev.target as HTMLFormElement).elements['pin']
         const nameEl = (ev.target as HTMLFormElement).elements['device-name']
         const humanReadableDeviceName = nameEl.value
 
-        onSubmit({
-            code: pin,
+        debug('got submit event', humanReadableDeviceName)
+
+        await onSubmit({
+            code: pin.value,
             humanReadableDeviceName
         })
+
+        pin.value = ''
+        nameEl.value = ''
     }
 
     function pinInput (ev:InputEvent) {

@@ -1,8 +1,9 @@
 import { PartySocket } from 'partysocket'
-import { toString } from 'uint8arrays'
+// import { toString } from '@bicycle-codes/identity'
 import { create as createMessage } from '@bicycle-codes/message'
 import Debug from '@nichoth/debug'
 import {
+    toString,
     writeKeyToDid,
     addDevice,
     createDeviceName
@@ -85,6 +86,8 @@ export async function Parent (identity:Identity, oddCrypto:Crypto, {
                 return reject(err)
             }
 
+            debug('parent got a message', msg)
+
             const newIdentity = await addDevice(
                 identity,
                 oddCrypto,
@@ -149,6 +152,7 @@ export async function Child (oddCrypto:Crypto, {
 
     const newDid = await writeKeyToDid(oddCrypto)
     const deviceName = await createDeviceName(newDid)
+    const exchangeKey = await oddCrypto.keystore.publicExchangeKey()
 
     /**
      * Send our DID to the existing device
@@ -157,9 +161,7 @@ export async function Child (oddCrypto:Crypto, {
         deviceName,
         humanReadableDeviceName,
         newDid: await writeKeyToDid(oddCrypto),
-        exchangeKey: toString(
-            await oddCrypto.keystore.publicExchangeKey()
-        )
+        exchangeKey: toString(exchangeKey)
     }))
 
     return new Promise((resolve, reject) => {
