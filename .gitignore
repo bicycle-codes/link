@@ -5,3 +5,4 @@ test/*.js
 dist
 .env
 public
+.partykit/

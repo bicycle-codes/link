@@ -1,12 +1,14 @@
 import { PartySocket } from 'partysocket'
 import { toString } from 'uint8arrays'
 import { create as createMessage } from '@bicycle-codes/message'
+import Debug from '@nichoth/debug'
 import {
     writeKeyToDid,
     addDevice,
     createDeviceName
 } from '@bicycle-codes/identity'
 import type { DID, Crypto, Identity } from '@bicycle-codes/identity'
+const debug = Debug()
 
 /**
  * Message from the new, incoming, device
@@ -47,21 +49,21 @@ export type Certificate = Awaited<
  * instance that includes the new device, after we get a message from the
  * new device.
  */
-export function Parent (identity:Identity, oddCrypto:Crypto, {
+export async function Parent (identity:Identity, oddCrypto:Crypto, {
     host,
     code,
-    id,
     query
 }:{
     host:string;
     code:string;
-    id?:string;
     query?:string;
 }):Promise<Identity> {
+    const myDid = await writeKeyToDid(oddCrypto)
+    debug('my did', myDid)
     const party = new PartySocket({
         host,
         room: code,
-        id,
+        id: myDid,
         query: {
             token: query
         }
@@ -121,9 +123,11 @@ export async function Child (oddCrypto:Crypto, {
     code:string;
     query?:string;
     humanReadableDeviceName:string;
-}) {
+}):Promise<{ identity:Identity, certificate:Certificate }> {
+    const myDid = await writeKeyToDid(oddCrypto)
     const party = new PartySocket({
         host,
+        id: myDid,
         room: code,
         query: { token: query },
     })
@@ -157,7 +161,7 @@ export async function Child (oddCrypto:Crypto, {
                 return reject(err)
             }
 
-            resolve({ newIdentity, certificate })
+            resolve({ identity: newIdentity, certificate })
         })
     })
 }

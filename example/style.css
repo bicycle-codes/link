@@ -1,0 +1,69 @@
+.link-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+
+    & .connectors {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        & button {
+            transition: 0.4s all;
+            width: 12rem;
+            cursor: pointer;
+            &:hover {
+                background-color: #00edff30;
+            }
+        }
+    }
+
+}
+
+form {
+    border: 1px solid;
+    padding: 1rem;
+    max-width: 30rem;
+}
+
+pre {
+    border: 1px solid;
+    padding: 1rem;
+    background-color: rgb(247, 247, 247);
+    overflow: scroll;
+    line-height: 1.4rem;
+}
+
+.the-pin {
+    margin-bottom: 2rem;
+
+    & .the-code {
+        font-size: 4rem;
+        letter-spacing: 1rem;
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
+
+.pin-input {
+    margin-bottom: 1rem;
+}
+
+#pin-input {
+    letter-spacing: 0.5rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    /* border: 1px solid; */
+    border: none;
+    border-bottom: 2px solid;
+    padding: 0.4rem;
+    padding-bottom: 0.2rem;
+    width: 11rem;
+
+    &:hover {
+        outline: none;
+    }
+}
