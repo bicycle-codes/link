@@ -7,6 +7,8 @@
 
 Link multiple devices via websocket.
 
+This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that holds its private keys.
+
 ## install
 
 ```sh

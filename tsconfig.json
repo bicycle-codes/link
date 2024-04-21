@@ -3,6 +3,7 @@
     "listFiles": true,
     "module": "NodeNext",
     "target": "ES2022",
+    "types": ["vite/client"],
     "moduleResolution": "nodenext",
     "esModuleInterop": false,
     "lib": ["ES2022", "DOM", "WebWorker"],
