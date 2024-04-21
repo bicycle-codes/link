@@ -9,7 +9,20 @@ import {
     createDeviceName
 } from '@bicycle-codes/identity'
 import type { DID, Crypto, Identity } from '@bicycle-codes/identity'
+import { customAlphabet } from '@nichoth/nanoid'
+import { numbers } from '@nichoth/nanoid-dictionary'
 const debug = Debug()
+
+/**
+ * Create a unique ID for the websocket connection. By default returns
+ * a 6 digit numeric code.
+ * @param {string} [alphabet] Custom alphabet, for example numbers
+ * @param {number} [length] integer for number of digits in the code
+ * @returns {ReturnType<typeof customAlphabet>}
+ */
+export function Code (alphabet?:string, length?:number):string {
+    return customAlphabet(alphabet || numbers, length ?? 6)()
+}
 
 /**
  * Message from the new, incoming, device
@@ -164,7 +177,10 @@ export async function Child (oddCrypto:Crypto, {
         exchangeKey: toString(exchangeKey)
     }))
 
-    return new Promise((resolve, reject) => {
+    const p = new Promise<{
+        identity:Identity,
+        certificate:Certificate
+    }>((resolve, reject) => {
         /**
          * We should only get 1 message,
          * containing the new identity that includes this device,
@@ -183,4 +199,6 @@ export async function Child (oddCrypto:Crypto, {
             party.close()
         })
     })
+
+    return p
 }
