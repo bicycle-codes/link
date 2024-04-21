@@ -1,5 +1,4 @@
 import { PartySocket } from 'partysocket'
-// import { toString } from '@bicycle-codes/identity'
 import { create as createMessage } from '@bicycle-codes/message'
 import Debug from '@nichoth/debug'
 import {
