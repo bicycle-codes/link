@@ -7,9 +7,7 @@ import { program as Program } from '@oddjs/odd'
 import { Button } from '@nichoth/components/htm/button'
 import Debug from '@nichoth/debug'
 import { TextInput } from '@nichoth/components/htm/text-input'
-import { customAlphabet } from '@nichoth/nanoid'
-import { numbers } from '@nichoth/nanoid-dictionary'
-import { Parent, Child, Certificate } from '../src/index.js'
+import { Parent, Child, Certificate, Code } from '../src/index.js'
 import '@nichoth/components/button-outline.css'
 import '@nichoth/components/text-input.css'
 import '@nichoth/components/button.css'
@@ -46,7 +44,7 @@ const Example:FunctionComponent = function Example () {
         ev.preventDefault()
         debug('add a child device', ev)
         // the parent needs to create a random ID for websocket connection
-        const code = customAlphabet(numbers, 6)()
+        const code = Code()
 
         batch(() => {
             state.linkState.value = 'parent'
