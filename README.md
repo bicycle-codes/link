@@ -29,6 +29,10 @@ npm i -S @bicycle-codes/link
 ```
 
 ## use
+```ts
+import { Parent, Child } from '@bicycle-codes/link'
+import type { Certificate, NewDeviceMessage } from '@bicycle-codes/link'
+```
 
 ## example
 Connect two devices, a phone and computer, for example. They must both know `code`, which by default is a 6 digit numberic code. The code must be transmitted out of band.
@@ -222,6 +226,18 @@ type Certificate = Awaited<
         recipient:DID  // <-- DID of who this certificate is intended for
     }>>
 >
+```
+
+### NewDeviceMessage 
+A message from the new, "child" device
+
+```ts
+export type NewDeviceMessage = {
+    newDid:`did:key:z${string}`;  // <-- DID for the new device
+    deviceName:string;  // <-- the auto generated random string
+    exchangeKey:string;
+    humanReadableDeviceName:string;  // <-- a name for the new device
+}
 ```
 
 The certificate will also have keys `author` and `signature`, via the
