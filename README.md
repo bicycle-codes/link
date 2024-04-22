@@ -36,6 +36,7 @@ Connect two devices, a phone and computer, for example. They must both know `cod
 ```js
 import { program as Program } from '@oddjs/odd'
 import { create as createID } from '@bicycle-codes/identity'
+import { Parent } from '@bicycle-codes/link'
 
 const program = await Program({
     namespace: {
@@ -63,7 +64,10 @@ const newIdentity = await Parent(myId, crypto, {
 
 ...On a different machine...
 
-```js
+```js 
+import { program as Program } from '@oddjs/odd'
+import { Child } from '@bicycle-codes/link'
+
 const program = await Program({
     namespace: {
         name: 'link-example',
@@ -81,7 +85,29 @@ const { identity, certificate } = await Child(crypto, {
 
 Both machines now have an ID that looks like this:
 
-![Screenshot of identity](image.png)
+```js
+{
+  "username": "vnhq32ybnanplsklhfd2cd6cdqaoeygl",
+  "humanName": "alice",
+  "rootDID": "did:key:z13V3Sog2YaU...",
+  "devices": {
+    "vnhq32ybnanplsklhfd2cd6cdqaoeygl": {
+      "aes": "Cj1XnlPQA35VroF...",
+      "name": "vnhq32ybnanplsklhfd2cd6cdqaoeygl",
+      "humanReadableName": "phone",
+      "did": "did:key:z13V3Sog2Y...",
+      "exchange": "MIIBIjANBgkqhkiG..."
+    },
+    "5ngvlbhsrfvpua3qnhllakwnnd2tzwzo": {
+      "name": "5ngvlbhsrfvpua3qnhllakwnnd2tzwzo",
+      "humanReadableName": "computer",
+      "aes": "oAbLoAtJawSbA3r2tI4BDEmb...",
+      "did": "did:key:z13V3Sog2YaUKhdGCmg...",
+      "exchange": "MIIBIjANBgkqhkiG9w0BAQEFA..."
+    }
+  }
+}
+```
 
 ### serverside
 This depends on a websocket server existing. We provide the export
