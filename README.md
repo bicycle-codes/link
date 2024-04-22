@@ -6,7 +6,7 @@
 
 Link multiple devices via websocket.
 
-This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) which stores the private keys.
+This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that stores the private keys. Also, you need a websocket server, for example [partykit](https://www.partykit.io/).
 
 ## install
 
