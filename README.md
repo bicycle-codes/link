@@ -191,8 +191,9 @@ async function Child (oddCrypto:Crypto, {
 ### Code
 Need to create a code before connecting the parent device. The code should be transmitted out-of-band; it serves as verification that the two devices want to connect.
 
-By default this will create a random 6 digit numeric code; see the source code
-for how to use a different alphabet.
+By default this will create a random 6 digit numeric code. Internally we are using [nanoid](https://github.com/ai/nanoid) to create the code.
+
+[To create your own code](#create-your-own-random-code), use the [nanoid-dictionary](https://github.com/CyberAP/nanoid-dictionary) package.
 
 ```ts
 function Code (alphabet?:string, length?:number):string {
@@ -205,6 +206,19 @@ function Code (alphabet?:string, length?:number):string {
 import { Code } from '@bicycle-codes/link'
 const code = Code()
 // => 942814
+```
+
+#### create your own random code
+Pass in a dictionary and the desired length of the code.
+
+```js
+import { Code } from '@bicycle-codes/link'
+import { alphanumeric } from 'nanoid-dictionary'
+
+function myCodeGenerator () {
+    // return a 10 character, alphanumeric random code
+    return Code(alphanumeric, 10)
+}
 ```
 
 ## types
