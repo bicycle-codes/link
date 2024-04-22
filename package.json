@@ -15,6 +15,7 @@
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap=inline",
     "build-esm": "tsc --project tsconfig.build.json",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm",
+    "build-docs": "typedoc ./src/index.ts",
     "start": "concurrently --kill-others \"npx partykit dev\" \"npx vite\"",
     "preversion": "npm run lint",
     "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
@@ -73,6 +74,7 @@
     "preact": "^10.20.2",
     "tap-spec": "^5.0.0",
     "tape-run": "^11.0.0",
+    "typedoc": "^0.25.13",
     "typescript": "^5.4.4",
     "vite": "^5.2.10"
   },

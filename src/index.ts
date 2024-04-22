@@ -54,7 +54,6 @@ export type Certificate = Awaited<
  * @param {Identity} identity The existing identity
  * @param {Crypto} oddCrypto A Crypto implementation from `odd`
  * @param {Object} opts Host, crypto, and a code for the websocket
- * @param {Crypto} opts.oddCrypto An instance of odd crypto
  * @param {string} opts.host The address for your websocket
  * @param {string} opts.code A unique ID for the websocket connection. Should
  * be transmitted out of band to the new device.
