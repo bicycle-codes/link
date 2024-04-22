@@ -17,7 +17,7 @@ npm i -S @bicycle-codes/link
 ## use
 
 ## example
-Connect two devices, a phone and computer, for example. They must both know `code`, which by default is a 6 digit numberic code that should be transmitted out of band.
+Connect two devices, a phone and computer, for example. They must both know `code`, which by default is a 6 digit numberic code. The code must be transmitted out of band.
 
 ```js
 import { program as Program } from '@oddjs/odd'
