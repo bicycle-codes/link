@@ -18,6 +18,10 @@ When the new device (the child) connects to the websocket, it tells the parent
 its public key. The parent then encrypts its AES key to the child's public key.
 The child gets the key, which it is able to decrypt with its private key.
 
+## docs
+
+[See the docs page](https://bicycle-codes.github.io/link/)
+
 ## install
 
 ```sh
