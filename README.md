@@ -4,9 +4,19 @@
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Link multiple devices via websocket.
+Link multiple devices via websocket. Linking means that both devices share the
+same AES key.
 
-This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that stores the private keys. Also, you need a websocket server, for example [partykit](https://www.partykit.io/).
+This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that stores the private keys. Also, you need a websocket server,
+for example [partykit](https://www.partykit.io/).
+
+We have two devices, a parent and a child. To securely send an AES key to
+another device, the parent first opens a websocket connection at a random URL.
+The URL for the websocket needs to be transmitted out-of-band.
+
+When the new device (the child) connects to the websocket, it tells the parent
+its public key. The parent then encrypts its AES key to the child's public key.
+The child gets the key, which it is able to decrypt with its private key.
 
 ## install
 
