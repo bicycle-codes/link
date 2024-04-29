@@ -8,7 +8,7 @@
 Link multiple devices via websocket. Linking means that both devices share the
 same AES key.
 
-This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that stores the private keys. Also, you need a websocket server,
+This depends on each device having a [keystore](https://github.com/fission-codes/keystore-idb) that stores your private keys. Also, you need a websocket server,
 for example [partykit](https://www.partykit.io/).
 
 We have two devices, a parent and a child. To securely send an AES key to
