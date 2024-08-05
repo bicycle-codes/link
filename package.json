@@ -62,7 +62,7 @@
     "@preact/preset-vite": "^2.8.2",
     "@preact/signals": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^7.6.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "auto-changelog": "^2.4.0",
     "concurrently": "^8.2.2",
     "esbuild": "^0.23.0",
