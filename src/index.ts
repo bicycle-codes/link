@@ -2,12 +2,13 @@ import { PartySocket } from 'partysocket'
 import { create as createMessage } from '@bicycle-codes/message'
 import Debug from '@nichoth/debug'
 import {
-    toString,
-    writeKeyToDid,
-    addDevice,
-    createDeviceName
+    // toString,
+    // writeKeyToDid,
+    // addDevice,
+    Identity,
+    createDeviceName,
 } from '@bicycle-codes/identity'
-import type { DID, Crypto, Identity } from '@bicycle-codes/identity'
+import type { DID, } from '@bicycle-codes/identity/types'
 import { customAlphabet } from '@nichoth/nanoid'
 import { numbers } from '@nichoth/nanoid-dictionary'
 const debug = Debug()
@@ -61,7 +62,7 @@ export type Certificate = Awaited<
  * instance that includes the new device, after we get a message from the
  * new device.
  */
-export async function Parent (identity:Identity, oddCrypto:Crypto, {
+export async function Parent (identity:Identity, {
     host,
     code,
     query
@@ -70,7 +71,7 @@ export async function Parent (identity:Identity, oddCrypto:Crypto, {
     code:string;
     query?:string;
 }):Promise<Identity> {
-    const myDid = await writeKeyToDid(oddCrypto)
+    const myDid = await publicKeyToDid(oddCrypto)
     debug('my did', myDid)
     const party = new PartySocket({
         host,
