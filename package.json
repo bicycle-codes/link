@@ -60,7 +60,7 @@
     "@nichoth/debug": "^0.6.7",
     "@oddjs/odd": "^0.37.2",
     "@preact/preset-vite": "^2.8.2",
-    "@preact/signals": "^1.2.3",
+    "@preact/signals": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "auto-changelog": "^2.4.0",
