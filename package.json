@@ -54,7 +54,7 @@
     "uint8arrays": "^5.0.3"
   },
   "devDependencies": {
-    "@bicycle-codes/message": "^0.8.3",
+    "@bicycle-codes/message": "^0.9.1",
     "@bicycle-codes/tapzero": "^0.10.0",
     "@nichoth/components": "^0.16.9",
     "@nichoth/debug": "^0.6.7",
