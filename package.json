@@ -76,7 +76,7 @@
     "tape-run": "^11.0.0",
     "typedoc": "^0.28.1",
     "typescript": "^5.4.4",
-    "vite": "^6.0.1"
+    "vite": "^7.0.0"
   },
   "types": "./dist/index.d.ts",
   "bugs": {
